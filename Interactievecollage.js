@@ -14,6 +14,27 @@ function draw() {
   drawSea();
   drawSeaLight();
 
+  let vogelX = 0;
+  drawBird(vogelX, 60);
+  vogelX += 2;
+  if (vogelX > width + 40) {
+    vogelX = -40;
+  }
+
+  function drawBird(x, y) {
+    push();
+    stroke(60, 60, 60);
+    strokeWeight(3);
+    noFill();
+
+    beginShape();
+    vertex(x - 20, y + 5);
+    vertex(x, y);
+    vertex(x + 20, y + 5);
+    endShape();
+    pop();
+  }
+
   function drawSea() {
     noStroke();
     fill(0, 105, 180, 220);
