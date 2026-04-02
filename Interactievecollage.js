@@ -12,6 +12,8 @@ function draw() {
   drawHoverCloud(600, 160, 1.5);
 
   drawSea();
+  drawSeaLight();
+
   function drawSea() {
     noStroke();
     fill(0, 105, 180, 220);
@@ -19,6 +21,23 @@ function draw() {
     let waveLength = 120;
     let speed = millis() * 0.002;
     let seaTop = height - 140;
+    beginShape();
+    vertex(0, height);
+    for (let x = 0; x <= width; x += 10) {
+      let y = seaTop + sin((x / waveLength) * TWO_PI + speed) * waveHeight;
+      vertex(x, y);
+    }
+    vertex(width, height);
+    endShape(CLOSE);
+  }
+
+  function drawSeaLight() {
+    noStroke();
+    fill(100, 180, 230, 180);
+    let waveHeight = 18;
+    let waveLength = 90;
+    let speed = millis() * 0.002 + 100;
+    let seaTop = height - 80;
     beginShape();
     vertex(0, height);
     for (let x = 0; x <= width; x += 10) {
