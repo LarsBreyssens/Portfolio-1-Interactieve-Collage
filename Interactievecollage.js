@@ -2,6 +2,8 @@ function setup() {
   createCanvas(800, 600);
 }
 
+let vogelX = 0;
+
 function draw() {
   background(173, 216, 230);
 
@@ -14,7 +16,6 @@ function draw() {
   drawSea();
   drawSeaLight();
 
-  let vogelX = 0;
   drawBird(vogelX, 60);
   vogelX += 2;
   if (vogelX > width + 40) {
