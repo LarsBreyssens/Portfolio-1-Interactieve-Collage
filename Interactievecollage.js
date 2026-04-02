@@ -11,18 +11,36 @@ function draw() {
   drawHoverCloud(400, 80, 0.9);
   drawHoverCloud(600, 160, 1.5);
 
+  drawSea();
+  function drawSea() {
+    noStroke();
+    fill(0, 105, 180, 220);
+    let waveHeight = 28;
+    let waveLength = 120;
+    let speed = millis() * 0.002;
+    let seaTop = height - 140;
+    beginShape();
+    vertex(0, height);
+    for (let x = 0; x <= width; x += 10) {
+      let y = seaTop + sin((x / waveLength) * TWO_PI + speed) * waveHeight;
+      vertex(x, y);
+    }
+    vertex(width, height);
+    endShape(CLOSE);
+  }
+
   function drawMountains() {
     noStroke();
-    fill(120, 170, 200);
+    fill(220, 270, 100);
     triangle(0, 500, 200, 200, 400, 500);
 
-    fill(100, 140, 180);
+    fill(200, 240, 180);
     triangle(300, 500, 500, 250, 700, 500);
 
-    fill(80, 120, 160);
+    fill(180, 220, 240);
     triangle(600, 500, 750, 300, 900, 500);
 
-    fill(150, 200, 220);
+    fill(250, 300, 220);
     triangle(100, 600, 350, 350, 600, 600);
   }
 }
