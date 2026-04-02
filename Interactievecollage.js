@@ -4,11 +4,12 @@ function setup() {
 
 function draw() {
   background(173, 216, 230);
+
   drawMountains();
 
-  drawCloud(150, 120, 1.2);
-  drawCloud(400, 80, 0.9);
-  drawCloud(600, 160, 1.5);
+  drawHoverCloud(150, 120, 1.2);
+  drawHoverCloud(400, 80, 0.9);
+  drawHoverCloud(600, 160, 1.5);
 
   function drawMountains() {
     noStroke();
@@ -26,21 +27,16 @@ function draw() {
   }
 }
 
-function drawCloud(x, y, scale) {
+function drawHoverCloud(x, y, scale) {
+  let over = dist(mouseX, mouseY, x, y) < 50 * scale + 20;
+  let s = scale;
+  if (over) {
+    s *= 1.25;
+  }
   noStroke();
   fill(255, 255, 255, 230);
-  ellipse(x, y, 60 * scale, 50 * scale);
-  ellipse(x + 25 * scale, y + 10 * scale, 50 * scale, 40 * scale);
-  ellipse(x - 25 * scale, y + 10 * scale, 50 * scale, 40 * scale);
-  ellipse(x, y + 20 * scale, 55 * scale, 35 * scale);
-}
-
-if (zee) {
-  image(zee, 0, 500, width, 100);
-}
-
-let zee;
-
-function preload() {
-  zee = loadImage("images/zee.png");
+  ellipse(x, y, 60 * s, 50 * s);
+  ellipse(x + 25 * s, y + 10 * s, 50 * s, 40 * s);
+  ellipse(x - 25 * s, y + 10 * s, 50 * s, 40 * s);
+  ellipse(x, y + 20 * s, 55 * s, 35 * s);
 }
